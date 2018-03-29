@@ -1,7 +1,7 @@
 # delphi-belsekolah
 aplikasi sederhana bel sekolah dengan borland delphi 7
 
-# deskripsi
+# keterangan
 > Aplikasi ini dibuat untuk membantu instansi pendidikan dalam memanajemen waktu bel pergantian sesi pelajaran, istirahat maupun ujian
 
 > Aplikasi ini bebas dikembangkan siapa saja
