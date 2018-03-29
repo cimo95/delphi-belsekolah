@@ -80,7 +80,7 @@ type
     procedure WMHotKey(var Msg: TWMHotKey); message WM_HOTKEY;
   public
     { Deklarasi untuk penggunaan ke semua unit yang terintegerasi }
-    ui0, ui1: integer;
+    ui0, ui1, iTuru: integer;
     bubah, btambah, bharian: boolean;
   end;
 
@@ -106,6 +106,7 @@ begin
     tif.WriteString('Jadwal', 'W' + inttostr(i), futama.lv0.Items.Item[i].SubItems.Strings[0]);
     tif.WriteString('Jadwal', 'N' + inttostr(i), futama.lv0.Items.Item[i].SubItems.Strings[1]);
     tif.WriteString('Jadwal', 'K' + inttostr(i), futama.lv0.Items.Item[i].SubItems.Strings[2]);
+    tif.WriteString('Jadwal', 'F' + inttostr(i), futama.lv0.Items.Item[i].SubItems.Strings[3]);
   end;
 end;
 
@@ -129,6 +130,7 @@ begin
     tli.SubItems.Add(tif.ReadString('Jadwal', 'W' + inttostr(i), ''));
     tli.SubItems.Add(tif.ReadString('Jadwal', 'N' + inttostr(i), ''));
     tli.SubItems.Add(tif.ReadString('Jadwal', 'K' + inttostr(i), ''));
+    tli.SubItems.Add(tif.ReadString('Jadwal', 'F' + inttostr(i), '+'));
   end;
 end;
 
@@ -290,17 +292,19 @@ begin
           s := s + ansiuppercase(copy(clb0.Items.Strings[i], 0, 3) + ',');
       tli := lv0.Items.Add;
       tli.Caption := s;
-      tli.SubItems.Add(formatdatetime('hh:MM', dtp2.Time));
+      tli.SubItems.Add(formatdatetime('hh:MM:00', dtp2.Time));
       tli.SubItems.Add(e0.Text);
       tli.SubItems.Add(m0.Text);
+      tli.SubItems.Add('+');
     end
     else
     begin
       tli := lv0.Items.Add;
       tli.Caption := datetostr(dtp0.Date);
-      tli.SubItems.Add(formatdatetime('hh:MM', dtp2.Time));
+      tli.SubItems.Add(formatdatetime('hh:MM:00', dtp2.Time));
       tli.SubItems.Add(e0.Text);
       tli.SubItems.Add(m0.Text);
+      tli.SubItems.Add('+');
       if chb0.Checked then
       begin
         td := dtp0.Date;
@@ -308,9 +312,10 @@ begin
           td := incDay(td, 1);
           tli := lv0.Items.Add;
           tli.Caption := datetostr(td);
-          tli.SubItems.Add(formatdatetime('hh:MM', dtp2.Time));
+          tli.SubItems.Add(formatdatetime('hh:MM:00', dtp2.Time));
           tli.SubItems.Add(e0.Text);
           tli.SubItems.Add(m0.Text);
+          tli.SubItems.Add('+');
           application.ProcessMessages;
         until td = dtp1.Date;
       end;
@@ -337,9 +342,10 @@ begin
     lv0.Items.BeginUpdate;
     tli := lv0.Items.Item[lv0.itemindex];
     tli.Caption := s;
-    tli.SubItems.Strings[0] := formatdatetime('hh:MM', dtp2.Time);
+    tli.SubItems.Strings[0] := formatdatetime('hh:MM:00', dtp2.Time);
     tli.SubItems.Strings[1] := e0.Text;
     tli.SubItems.Strings[2] := m0.Text;
+    tli.SubItems.Strings[3] := '+';
     lv0.Items.EndUpdate;
     b5.Click;
     b1.Click;
@@ -376,6 +382,7 @@ begin
   l1.Caption := formatdatetime('hh:mm:ss', now);
   tmw.Resume;
   tmw.FreeOnTerminate := true;
+
 end;
 
 procedure Tfutama.b7Click(Sender: TObject);

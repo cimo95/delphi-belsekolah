@@ -4,14 +4,17 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, shellapi, filectrl, StdCtrls, ComCtrls;
+  Dialogs, shellapi, filectrl, StdCtrls, ComCtrls, mplayer;
 
 type
   TMonitorWaktu = class(TThread)
   private
     { Private declarations }
+    sTerakhir: string;
+    iIdx: integer;
   protected
     procedure Execute; override;
+    procedure Munio;
   end;
 
 implementation
@@ -33,37 +36,52 @@ uses
 
 { TMonitorWaktu }
 
+procedure TMonitorWaktu.Munio;
+begin
+  with futama do
+  begin
+    mp0.FileName := lv0.Items.Item[iIdx].SubItems.Strings[1];
+    mp0.Open;
+    mp0.Play;
+    lv0.Items.beginUpdate;
+    lv0.Items.Item[iIdx].SubItems.Strings[3] := 'x';
+    lv0.Items.EndUpdate;
+  end;
+end;
+
 procedure TMonitorWaktu.Execute;
 var
   i: integer;
   s, t, u: string;
-  b: boolean;
+  b, bl0: boolean;
 begin
-  while not terminated do
-  begin
-    with futama do
+  try
+    while not terminated do
     begin
-      u := caption;
-      s := formatdatetime('dd/mm/yyyy hh:MM', now);
-      if lv0.Items.Count <> 0 then
+      with futama do
       begin
-        for i := 0 to lv0.Items.Count - 1 do
+        u := caption;
+        s := formatdatetime('dd/mm/yyyy HH:MM:00', now);
+        bl0 := true;
+        if lv0.Items.Count <> 0 then
         begin
-          t := lv0.Items.Item[i].Caption + ' ' + lv0.Items.Item[i].SubItems.Strings[0];
-          b := s = t;
-          if b then
+          for i := 0 to lv0.Items.Count - 1 do
           begin
-            mp0.Open;
-            mp0.FileName := lv0.Items.Item[i].SubItems.Strings[1];
-            mp0.Play;
-            sleep(59000);
+            t := lv0.Items.Item[i].Caption + ' ' + lv0.Items.Item[i].SubItems.Strings[0];
+            b := (s = t) and (lv0.Items.Item[i].SubItems.Strings[3] <> 'x');
+            if b then
+            begin
+              iIdx := i;
+              synchronize(munio);
+            end;
           end;
         end;
+        sleep(1000);
       end;
-      sleep(1000);
     end;
+  except
   end;
 end;
 
 end.
- 
+
