@@ -10,8 +10,7 @@ type
   TMonitorWaktu = class(TThread)
   private
     { Private declarations }
-    sTerakhir: string;
-    iIdx: integer;
+    utmwi0: integer;
   protected
     procedure Execute; override;
     procedure Munio;
@@ -40,11 +39,11 @@ procedure TMonitorWaktu.Munio;
 begin
   with futama do
   begin
-    mp0.FileName := lv0.Items.Item[iIdx].SubItems.Strings[1];
+    mp0.FileName := lv0.Items.Item[utmwi0].SubItems.Strings[1];
     mp0.Open;
     mp0.Play;
     lv0.Items.beginUpdate;
-    lv0.Items.Item[iIdx].SubItems.Strings[3] := 'x';
+    lv0.Items.Item[utmwi0].SubItems.Strings[3] := 'x';
     lv0.Items.EndUpdate;
   end;
 end;
@@ -61,7 +60,7 @@ begin
       with futama do
       begin
         u := caption;
-        s := formatdatetime('dd/mm/yyyy HH:MM:00', now);
+        s := formatdatetime('dd/mm/yyyy HH:MM', now);
         bl0 := true;
         if lv0.Items.Count <> 0 then
         begin
@@ -71,7 +70,7 @@ begin
             b := (s = t) and (lv0.Items.Item[i].SubItems.Strings[3] <> 'x');
             if b then
             begin
-              iIdx := i;
+              utmwi0 := i;
               synchronize(munio);
             end;
           end;

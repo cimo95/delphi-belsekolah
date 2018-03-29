@@ -9,79 +9,78 @@ uses
 
 type
   Tfutama = class(TForm)
-    lv0: TListView;
-    p0: TPanel;
-    gb0: TGroupBox;
-    rb0: TRadioButton;
-    rb1: TRadioButton;
-    clb0: TCheckListBox;
-    l4: TLabel;
-    p1: TPanel;
-    l3: TLabel;
-    dtp0: TDateTimePicker;
-    chb0: TCheckBox;
-    dtp1: TDateTimePicker;
-    dtp2: TDateTimePicker;
-    l5: TLabel;
-    e0: TEdit;
-    b3: TButton;
-    l6: TLabel;
-    m0: TMemo;
-    b5: TButton;
-    b4: TButton;
     b0: TButton;
-    b1: TButton;
-    b2: TButton;
-    l2: TLabel;
-    l0: TLabel;
-    l1: TLabel;
-    l7: TLabel;
-    l8: TLabel;
-    pm0: TPopupMenu;
-    pm0mm0: TMenuItem;
-    pm0mm1: TMenuItem;
-    t0: TTimer;
-    b6: TButton;
-    pm1: TPopupMenu;
-    pm1mm0: TMenuItem;
-    pm1mm1: TMenuItem;
-    pm1mm2: TMenuItem;
-    pm1mm3: TMenuItem;
-    b7: TButton;
-    mp0: TMediaPlayer;
-    procedure rb0Click(Sender: TObject);
-    procedure rb1Click(Sender: TObject);
-    procedure b0Click(Sender: TObject);
-    procedure chb0Click(Sender: TObject);
-    procedure b3Click(Sender: TObject);
-    procedure t0Timer(Sender: TObject);
-    procedure lv0Click(Sender: TObject);
-    procedure b1Click(Sender: TObject);
-    procedure b2Click(Sender: TObject);
-    procedure b4Click(Sender: TObject);
-    procedure b5Click(Sender: TObject);
-    procedure b6Click(Sender: TObject);
-    procedure lv0DblClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure b7Click(Sender: TObject);
-    procedure dtp0Change(Sender: TObject);
-    procedure dtp1Change(Sender: TObject);
-    procedure pm0mm0Click(Sender: TObject);
-    procedure pm0mm1Click(Sender: TObject);
-    procedure pm1mm0Click(Sender: TObject);
-    procedure pm1mm1Click(Sender: TObject);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-    procedure pm1mm3Click(Sender: TObject);
-    procedure l2Click(Sender: TObject);
+b1: TButton;
+b2: TButton;
+b3: TButton;
+b4: TButton;
+b5: TButton;
+b6: TButton;
+b7: TButton;
+chb0: TCheckBox;
+clb0: TCheckListBox;
+dtp0: TDateTimePicker;
+dtp1: TDateTimePicker;
+dtp2: TDateTimePicker;
+e0: TEdit;
+gb0: TGroupBox;
+l0: TLabel;
+l1: TLabel;
+l2: TLabel;
+l3: TLabel;
+l4: TLabel;
+l5: TLabel;
+l6: TLabel;
+l7: TLabel;
+l8: TLabel;
+lv0: TListView;
+m0: TMemo;
+mp0: TMediaPlayer;
+p0: TPanel;
+p1: TPanel;
+pm0: TPopupMenu;
+pm0mm0: TMenuItem;
+pm0mm1: TMenuItem;
+pm1: TPopupMenu;
+pm1mm0: TMenuItem;
+pm1mm1: TMenuItem;
+pm1mm2: TMenuItem;
+pm1mm3: TMenuItem;
+rb0: TRadioButton;
+rb1: TRadioButton;
+t0: TTimer;
+procedure b0Click(Sender: TObject);
+procedure b1Click(Sender: TObject);
+procedure b2Click(Sender: TObject);
+procedure b3Click(Sender: TObject);
+procedure b4Click(Sender: TObject);
+procedure b5Click(Sender: TObject);
+procedure b6Click(Sender: TObject);
+procedure b7Click(Sender: TObject);
+procedure chb0Click(Sender: TObject);
+procedure dtp0Change(Sender: TObject);
+procedure dtp1Change(Sender: TObject);
+procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+procedure FormCreate(Sender: TObject);
+procedure l2Click(Sender: TObject);
+procedure lv0Click(Sender: TObject);
+procedure lv0DblClick(Sender: TObject);
+procedure pm0mm0Click(Sender: TObject);
+procedure pm0mm1Click(Sender: TObject);
+procedure pm1mm0Click(Sender: TObject);
+procedure pm1mm1Click(Sender: TObject);
+procedure pm1mm3Click(Sender: TObject);
+procedure rb0Click(Sender: TObject);
+procedure rb1Click(Sender: TObject);
+procedure t0Timer(Sender: TObject);
   private
     { Deklarasi hanya untuk penggunaan dalam unit ini saja }
-
-    tmw: TMonitorWaktu;
+    tmw0: TMonitorWaktu;
     procedure WMHotKey(var Msg: TWMHotKey); message WM_HOTKEY;
   public
     { Deklarasi untuk penggunaan ke semua unit yang terintegerasi }
-    ui0, ui1, iTuru: integer;
-    bubah, btambah, bharian: boolean;
+    uui0: integer;
+    uub0, uub1, uub2: boolean;
   end;
 
 var
@@ -136,7 +135,7 @@ end;
 
 procedure Tfutama.WMHotKey(var Msg: TWMHotKey);
 begin
-  if Msg.HotKey = ui1 then
+  if Msg.HotKey = uui0 then
     if application.MainForm.Visible then
     begin
       if pm1mm0.Checked then
@@ -156,8 +155,8 @@ begin
   Assert(Assigned(Strings));
   Strings.Clear;
   Strings.Delimiter := Delimiter;
-  Strings.QuoteChar := '`';
-  Strings.DelimitedText := Input; //'"' + StringReplace(Input, Delimiter, '"' + Delimiter + '"', [rfReplaceAll]) + '"' ;
+  Strings.QuoteChar := '"';
+  Strings.DelimitedText := Input;
 end;
 
 procedure Tfutama.rb0Click(Sender: TObject);
@@ -176,14 +175,14 @@ procedure Tfutama.b0Click(Sender: TObject);
 var
   i: integer;
 begin
-  if bubah then
+  if uub0 then
     exit;
-  btambah := not btambah;
-  p0.Visible := btambah;
-  lv0.enabled := not btambah;
-  b1.Enabled := not btambah;
-  b2.Enabled := not btambah;
-  if btambah then
+  uub1 := not uub1;
+  p0.Visible := uub1;
+  lv0.enabled := not uub1;
+  b1.Enabled := not uub1;
+  b2.Enabled := not uub1;
+  if uub1 then
   begin
     for i := 0 to clb0.Items.Count - 1 do
       clb0.Checked[i] := false;
@@ -204,7 +203,7 @@ end;
 procedure Tfutama.t0Timer(Sender: TObject);
 begin
   l0.Caption := formatdatetime('dddd, dd MMMM yyyy', now);
-  l1.Caption := formatdatetime('hh:mm:ss', now);
+  l1.Caption := formatdatetime('HH:MM:ss', now);
 end;
 
 procedure Tfutama.lv0Click(Sender: TObject);
@@ -219,7 +218,7 @@ var
   i, j: integer;
   tsl: tstringlist;
 begin
-  if btambah then
+  if uub1 then
     exit;
   if lv0.SelCount <> 1 then
     exit;
@@ -233,8 +232,8 @@ begin
   begin
     rb1.Checked := true;
     rb1Click(futama);
-    dtp1.Enabled := not bubah;
-    chb0.Enabled := not bubah;
+    dtp1.Enabled := not uub0;
+    chb0.Enabled := not uub0;
     dtp0.Date := strtodate(lv0.Items.Item[lv0.itemindex].Caption);
     dtp2.Time := strtotime(lv0.Items.Item[lv0.itemindex].subitems.Strings[0]);
     e0.Text := lv0.Items.Item[lv0.itemindex].subitems.Strings[1];
@@ -254,15 +253,15 @@ begin
     e0.Text := lv0.Items.Item[lv0.itemindex].subitems.Strings[1];
     m0.Text := lv0.Items.Item[lv0.itemindex].subitems.Strings[2];
   end;
-  bubah := not bubah;
-  p0.Visible := bubah;
+  uub0 := not uub0;
+  p0.Visible := uub0;
   lv0.Enabled := not p0.Visible;
-  rb0.Enabled := not bubah;
-  rb1.Enabled := not bubah;
-  dtp1.Enabled := not bubah;
-  chb0.Enabled := not bubah;
-  b0.Enabled := not bubah;
-  b2.Enabled := not bubah;
+  rb0.Enabled := not uub0;
+  rb1.Enabled := not uub0;
+  dtp1.Enabled := not uub0;
+  chb0.Enabled := not uub0;
+  b0.Enabled := not uub0;
+  b2.Enabled := not uub0;
 end;
 
 procedure Tfutama.b2Click(Sender: TObject);
@@ -283,7 +282,7 @@ var
   s: string;
   td: tdate;
 begin
-  if not bubah then
+  if not uub0 then
   begin
     if rb0.Checked then
     begin
@@ -292,7 +291,7 @@ begin
           s := s + ansiuppercase(copy(clb0.Items.Strings[i], 0, 3) + ',');
       tli := lv0.Items.Add;
       tli.Caption := s;
-      tli.SubItems.Add(formatdatetime('hh:MM:00', dtp2.Time));
+      tli.SubItems.Add(formatdatetime('HH:MM', dtp2.Time));
       tli.SubItems.Add(e0.Text);
       tli.SubItems.Add(m0.Text);
       tli.SubItems.Add('+');
@@ -301,7 +300,7 @@ begin
     begin
       tli := lv0.Items.Add;
       tli.Caption := datetostr(dtp0.Date);
-      tli.SubItems.Add(formatdatetime('hh:MM:00', dtp2.Time));
+      tli.SubItems.Add(formatdatetime('HH:MM', dtp2.Time));
       tli.SubItems.Add(e0.Text);
       tli.SubItems.Add(m0.Text);
       tli.SubItems.Add('+');
@@ -312,7 +311,7 @@ begin
           td := incDay(td, 1);
           tli := lv0.Items.Add;
           tli.Caption := datetostr(td);
-          tli.SubItems.Add(formatdatetime('hh:MM:00', dtp2.Time));
+          tli.SubItems.Add(formatdatetime('HH:MM', dtp2.Time));
           tli.SubItems.Add(e0.Text);
           tli.SubItems.Add(m0.Text);
           tli.SubItems.Add('+');
@@ -327,11 +326,11 @@ begin
   begin
     try
       strtodate(lv0.Items.Item[lv0.itemindex].Caption);
-      bharian := false;
+      uub2 := false;
     except
-      bharian := true;
+      uub2 := true;
     end;
-    if bharian then
+    if uub2 then
     begin
       for i := 0 to clb0.Items.Count - 1 do
         if clb0.Checked[i] then
@@ -342,7 +341,7 @@ begin
     lv0.Items.BeginUpdate;
     tli := lv0.Items.Item[lv0.itemindex];
     tli.Caption := s;
-    tli.SubItems.Strings[0] := formatdatetime('hh:MM:00', dtp2.Time);
+    tli.SubItems.Strings[0] := formatdatetime('HH:MM', dtp2.Time);
     tli.SubItems.Strings[1] := e0.Text;
     tli.SubItems.Strings[2] := m0.Text;
     tli.SubItems.Strings[3] := '+';
@@ -372,24 +371,23 @@ end;
 procedure Tfutama.FormCreate(Sender: TObject);
 begin
   pBacaINI;
-  if pm1mm0.Checked then
-    if ansilowercase(paramstr(1)) = '/diam' then
-      application.MainForm.Hide;
-  ui1 := GlobalAddAtom('ui1');
-  RegisterHotKey(handle, ui1, MOD_CONTROL + MOD_SHIFT, VK_TAB);
-  tmw := TMonitorWaktu.Create(false);
+  if (pm1mm0.Checked) and (ansilowercase(paramstr(1)) = '/diam') then
+    application.MainForm.Hide;
+  uui0 := GlobalAddAtom('uui0');
+  RegisterHotKey(handle, uui0, MOD_CONTROL + MOD_SHIFT, VK_TAB);
+  tmw0 := TMonitorWaktu.Create(false);
   l0.Caption := formatdatetime('dddd, dd MMMM yyyy', now);
-  l1.Caption := formatdatetime('hh:mm:ss', now);
-  tmw.Resume;
-  tmw.FreeOnTerminate := true;
+  l1.Caption := formatdatetime('HH:MM:ss', now);
+  tmw0.Resume;
+  tmw0.FreeOnTerminate := true;
 
 end;
 
 procedure Tfutama.b7Click(Sender: TObject);
 begin
-  if btambah then
+  if uub1 then
     b0.Click;
-  if bubah then
+  if uub0 then
     b1.Click;
 end;
 

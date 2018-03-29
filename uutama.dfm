@@ -1,11 +1,11 @@
 object futama: Tfutama
-  Left = 672
-  Top = 166
+  Left = 667
+  Top = 161
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Bel 1.0 BD7'
-  ClientHeight = 453
-  ClientWidth = 472
+  ClientHeight = 455
+  ClientWidth = 474
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -834,7 +834,7 @@ object futama: Tfutama
       end
       item
         Caption = 'flag'
-        Width = 5
+        Width = 0
       end>
     Ctl3D = False
     GridLines = True
@@ -1022,7 +1022,7 @@ object futama: Tfutama
       end
       object b5: TButton
         Left = 192
-        Top = 208
+        Top = 210
         Width = 75
         Height = 25
         Caption = 'RESET'
@@ -1031,7 +1031,7 @@ object futama: Tfutama
       end
       object b4: TButton
         Left = 112
-        Top = 209
+        Top = 210
         Width = 75
         Height = 25
         Caption = 'SIMPAN'
