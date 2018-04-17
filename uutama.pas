@@ -10,69 +10,69 @@ uses
 type
   Tfutama = class(TForm)
     b0: TButton;
-b1: TButton;
-b2: TButton;
-b3: TButton;
-b4: TButton;
-b5: TButton;
-b6: TButton;
-b7: TButton;
-chb0: TCheckBox;
-clb0: TCheckListBox;
-dtp0: TDateTimePicker;
-dtp1: TDateTimePicker;
-dtp2: TDateTimePicker;
-e0: TEdit;
-gb0: TGroupBox;
-l0: TLabel;
-l1: TLabel;
-l2: TLabel;
-l3: TLabel;
-l4: TLabel;
-l5: TLabel;
-l6: TLabel;
-l7: TLabel;
-l8: TLabel;
-lv0: TListView;
-m0: TMemo;
-mp0: TMediaPlayer;
-p0: TPanel;
-p1: TPanel;
-pm0: TPopupMenu;
-pm0mm0: TMenuItem;
-pm0mm1: TMenuItem;
-pm1: TPopupMenu;
-pm1mm0: TMenuItem;
-pm1mm1: TMenuItem;
-pm1mm2: TMenuItem;
-pm1mm3: TMenuItem;
-rb0: TRadioButton;
-rb1: TRadioButton;
-t0: TTimer;
-procedure b0Click(Sender: TObject);
-procedure b1Click(Sender: TObject);
-procedure b2Click(Sender: TObject);
-procedure b3Click(Sender: TObject);
-procedure b4Click(Sender: TObject);
-procedure b5Click(Sender: TObject);
-procedure b6Click(Sender: TObject);
-procedure b7Click(Sender: TObject);
-procedure chb0Click(Sender: TObject);
-procedure dtp0Change(Sender: TObject);
-procedure dtp1Change(Sender: TObject);
-procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-procedure FormCreate(Sender: TObject);
-procedure l2Click(Sender: TObject);
-procedure lv0Click(Sender: TObject);
-procedure lv0DblClick(Sender: TObject);
-procedure pm0mm0Click(Sender: TObject);
-procedure pm0mm1Click(Sender: TObject);
-procedure pm1mm0Click(Sender: TObject);
-procedure pm1mm1Click(Sender: TObject);
-procedure pm1mm3Click(Sender: TObject);
-procedure rb0Click(Sender: TObject);
-procedure rb1Click(Sender: TObject);
-procedure t0Timer(Sender: TObject);
+    b1: TButton;
+    b2: TButton;
+    b3: TButton;
+    b4: TButton;
+    b5: TButton;
+    b6: TButton;
+    b7: TButton;
+    chb0: TCheckBox;
+    clb0: TCheckListBox;
+    dtp0: TDateTimePicker;
+    dtp1: TDateTimePicker;
+    dtp2: TDateTimePicker;
+    e0: TEdit;
+    gb0: TGroupBox;
+    l0: TLabel;
+    l1: TLabel;
+    l2: TLabel;
+    l3: TLabel;
+    l4: TLabel;
+    l5: TLabel;
+    l6: TLabel;
+    l7: TLabel;
+    l8: TLabel;
+    lv0: TListView;
+    m0: TMemo;
+    mp0: TMediaPlayer;
+    p0: TPanel;
+    p1: TPanel;
+    pm0: TPopupMenu;
+    pm0mm0: TMenuItem;
+    pm0mm1: TMenuItem;
+    pm1: TPopupMenu;
+    pm1mm0: TMenuItem;
+    pm1mm1: TMenuItem;
+    pm1mm2: TMenuItem;
+    pm1mm3: TMenuItem;
+    rb0: TRadioButton;
+    rb1: TRadioButton;
+    t0: TTimer;
+    procedure b0Click(Sender: TObject);
+    procedure b1Click(Sender: TObject);
+    procedure b2Click(Sender: TObject);
+    procedure b3Click(Sender: TObject);
+    procedure b4Click(Sender: TObject);
+    procedure b5Click(Sender: TObject);
+    procedure b6Click(Sender: TObject);
+    procedure b7Click(Sender: TObject);
+    procedure chb0Click(Sender: TObject);
+    procedure dtp0Change(Sender: TObject);
+    procedure dtp1Change(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormCreate(Sender: TObject);
+    procedure l2Click(Sender: TObject);
+    procedure lv0Click(Sender: TObject);
+    procedure lv0DblClick(Sender: TObject);
+    procedure pm0mm0Click(Sender: TObject);
+    procedure pm0mm1Click(Sender: TObject);
+    procedure pm1mm0Click(Sender: TObject);
+    procedure pm1mm1Click(Sender: TObject);
+    procedure pm1mm3Click(Sender: TObject);
+    procedure rb0Click(Sender: TObject);
+    procedure rb1Click(Sender: TObject);
+    procedure t0Timer(Sender: TObject);
   private
     { Deklarasi hanya untuk penggunaan dalam unit ini saja }
     tmw0: TMonitorWaktu;
@@ -131,6 +131,8 @@ begin
     tli.SubItems.Add(tif.ReadString('Jadwal', 'K' + inttostr(i), ''));
     tli.SubItems.Add(tif.ReadString('Jadwal', 'F' + inttostr(i), '+'));
   end;
+  for i := futama.lv0.Items.Count-1 downto 0 do
+   if futama.lv0.Items.Item[i].Caption = '' then futama.lv0.Items.Delete(i);
 end;
 
 procedure Tfutama.WMHotKey(var Msg: TWMHotKey);
@@ -279,7 +281,7 @@ procedure Tfutama.b4Click(Sender: TObject);
 var
   tli: tlistitem;
   i: integer;
-  s: string;
+  s,t: string;
   td: tdate;
 begin
   if not uub0 then
@@ -371,8 +373,6 @@ end;
 procedure Tfutama.FormCreate(Sender: TObject);
 begin
   pBacaINI;
-  if (pm1mm0.Checked) and (ansilowercase(paramstr(1)) = '/diam') then
-    application.MainForm.Hide;
   uui0 := GlobalAddAtom('uui0');
   RegisterHotKey(handle, uui0, MOD_CONTROL + MOD_SHIFT, VK_TAB);
   tmw0 := TMonitorWaktu.Create(false);
@@ -380,7 +380,8 @@ begin
   l1.Caption := formatdatetime('HH:MM:ss', now);
   tmw0.Resume;
   tmw0.FreeOnTerminate := true;
-
+  //if (pm1mm0.Checked) and (ansilowercase(paramstr(1)) = '/diam') then
+  //  application.MainForm.Hide;
 end;
 
 procedure Tfutama.b7Click(Sender: TObject);
@@ -453,7 +454,7 @@ begin
     tr.RootKey := HKEY_CURRENT_USER;
     tr.OpenKey('Software\Microsoft\Windows\CurrentVersion\Run', false);
     if pm1mm1.Checked then
-      tr.writestring(changefileext(extractfilename(application.ExeName), ''), application.ExeName + ' /diam')
+      tr.writestring(changefileext(extractfilename(application.ExeName), ''), application.ExeName)
     else
       tr.DeleteValue(changefileext(extractfilename(application.ExeName), ''));
   finally

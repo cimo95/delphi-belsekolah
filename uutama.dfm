@@ -1,10 +1,10 @@
 object futama: Tfutama
-  Left = 667
-  Top = 161
+  Left = 471
+  Top = 99
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Bel 1.0 BD7'
-  ClientHeight = 455
+  ClientHeight = 460
   ClientWidth = 474
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
@@ -909,7 +909,7 @@ object futama: Tfutama
         Top = 40
         Width = 262
         Height = 49
-        Columns = 2
+        Columns = 3
         ItemHeight = 13
         Items.Strings = (
           'Senin'
@@ -917,7 +917,8 @@ object futama: Tfutama
           'Rabu'
           'Kamis'
           'Jum'#39'at'
-          'Sabtu')
+          'Sabtu'
+          'Minggu')
         TabOrder = 2
       end
       object p1: TPanel
